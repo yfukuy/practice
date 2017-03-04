@@ -1,30 +1,35 @@
 package main
+
 import "fmt"
 
-type person struct {
-  name string
-  age int
+// Person exported struct
+type Person struct {
+	name string
+	age  int
 }
 
-func Older(p1 person, p2 person) (person, int) {
-  if p1.age > p2.age {
-    return p1, p1.age-p2.age
-  } else {
-    return p2, p2.age-p1.age
-  }
+// Older return older person and diff
+func Older(p1 Person, p2 Person) (Person, int) {
+	if p1.age > p2.age {
+		return p1, p1.age - p2.age
+	}
+	return p2, p2.age - p1.age
 }
 
 func main() {
-  var tom person
-  tom.name, tom.age = "tom", 20
+	var tom Person
+	tom.name, tom.age = "tom", 20
 
-  bob := person{age:14, name:"bob"}
-  paul := person{"paul", 23}
+	bob := Person{age: 14, name: "bob"}
+	paul := Person{"paul", 23}
 
-  round_one_winner, diff := Older(tom, bob)
-  fmt.Printf("%s vs %s. winner is %s. diff is %d.\n", tom.name, bob.name, round_one_winner.name, diff)
+	roundOneWinner, diff := Older(tom, bob)
+	fmt.Printf("%s vs %s. winner is %s. diff is %d.\n", tom.name, bob.name, roundOneWinner.name, diff)
 
-  round_two_winner, diff := Older(bob, paul)
-  fmt.Printf("%s vs %s. winner is %s. diff is %d.\n", bob.name, paul.name, round_two_winner.name, diff)
+	roundTwoWinner, diff := Older(bob, paul)
+	fmt.Printf("%s vs %s. winner is %s. diff is %d.\n", bob.name, paul.name, roundTwoWinner.name, diff)
+
+	roundThreeWinner, diff := Older(paul, tom)
+	fmt.Printf("%s vs %s. winner is %s. diff is %d\n", paul.name, tom.name, roundThreeWinner.name, diff)
 
 }
